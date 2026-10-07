@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.venv/
+venv/
+.env
+.env.*
+.ipynb_checkpoints/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Kaggle / Hugging Face caches
+.kaggle/
+.cache/
+hf_cache/
+phreshphish_hf_cache/
+
+# Raw data
+data/raw/
+raw_data/
+*.warc
+*.warc.gz
+
+# Large generated ML artifacts
+*.parquet
+*.feather
+*.arrow
+*.joblib
+*.pkl
+*.pickle
+*.zip
+*.tar
+*.tar.gz
+
+# Temporary files
+*.partial
+*.tmp
+~$*
