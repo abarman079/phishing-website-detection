@@ -1,0 +1,3 @@
+label,train_max,test_min,relation
+0,2025-09-08,2025-09-08,same_calendar_day_boundary
+1,2025-09-08,2025-09-09,strictly_later

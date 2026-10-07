@@ -1,0 +1,3 @@
+split,rows,reported_rows,benign,phish,date_min,date_max,duplicate_sha256,duplicate_raw_url
+train,498255,498255,276729,221526,2024-07-02,2025-09-08,0,0
+test,168060,168060,91260,76800,2025-09-08,2025-12-16,0,0

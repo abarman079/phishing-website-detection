@@ -1,0 +1,17 @@
+split,field,arrow_type
+train,sha256,large_string
+train,url,large_string
+train,label,large_string
+train,target,large_string
+train,date,date32[day]
+train,lang,large_string
+train,lang_score,float
+train,html,large_string
+test,sha256,large_string
+test,url,large_string
+test,label,large_string
+test,target,large_string
+test,date,date32[day]
+test,lang,large_string
+test,lang_score,float
+test,html,large_string

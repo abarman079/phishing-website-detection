@@ -1,0 +1,8 @@
+{
+  "mode": "FULL",
+  "revision": "eabec4b7a66324b79cc8a0ad856d1731dc26fe1a",
+  "cutoff_inclusive": "2025-07-09",
+  "rule": "whole-day cumulative row count nearest 80%; earlier tie wins",
+  "h08_decision_partition": "internal_train",
+  "official_test_unchanged": true
+}

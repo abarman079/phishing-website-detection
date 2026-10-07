@@ -1,0 +1,16 @@
+id,feature,definition,source,predictor
+U01,url_length,Original URL characters,A; B; C,True
+U02,hostname_length,Parsed hostname characters; no port/userinfo,B; C,True
+U03,path_length,Encoded path characters,A; C,True
+U04,query_length,Encoded query characters without ?,C,True
+U05,num_dots,Original URL dot count,A; B; C,True
+U06,num_hyphens,Original URL hyphen count,B; C,True
+U07,num_digits,ASCII digits 0-9 in original URL,A; C,True
+U08,digit_ratio,ASCII digits / original length; empty=0,A adapted; B,True
+U09,num_subdomains,Labels before ICANN registrable domain; IP=0; unknown=NaN,A; B; C; PSL refinement,True
+U10,path_depth,Nonempty path segments,C,True
+U11,num_query_params,Parsed query pairs; repeated/blank retained; & separator,A; C adapted,True
+U12,has_ip_host,Parsed host recognised as IPv4/IPv6,A; B; C,True
+U13,has_punycode,Original hostname label begins xn--,B,True
+U14,has_at_symbol,Literal @ anywhere in original URL,B; C,True
+U15,url_entropy,"Shannon entropy, log2, original characters",A,True

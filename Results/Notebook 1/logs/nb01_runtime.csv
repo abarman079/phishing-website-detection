@@ -1,0 +1,5 @@
+stage,split,rows,seconds
+metadata_stream,train,498255,139.41058335599996
+metadata_stream,test,168060,50.82094559500001
+url_extract_and_write,train,498255,50.632183364999946
+url_extract_and_write,test,168060,16.809614412999963

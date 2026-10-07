@@ -1,0 +1,16 @@
+feature,missing_n,missing_pct
+url_length,0,0.0
+hostname_length,13,0.0032706048103049207
+path_length,13,0.0032706048103049207
+query_length,13,0.0032706048103049207
+num_dots,0,0.0
+num_hyphens,0,0.0
+num_digits,0,0.0
+digit_ratio,0,0.0
+num_subdomains,15,0.003773774781121063
+path_depth,13,0.0032706048103049207
+num_query_params,13,0.0032706048103049207
+has_ip_host,13,0.0032706048103049207
+has_punycode,13,0.0032706048103049207
+has_at_symbol,0,0.0
+url_entropy,0,0.0
