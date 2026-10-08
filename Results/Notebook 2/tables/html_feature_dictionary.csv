@@ -1,0 +1,11 @@
+id,feature,definition,retained_predictor,source
+H01,anchor_external_ratio,External valid anchors / valid domain-bearing anchors,True,Aljofey et al. (2022); approved literature feature family
+H02,form_external_ratio,External valid form actions / valid domain-bearing form actions,True,Aljofey et al. (2022); approved literature feature family
+H03,form_invalid_action_ratio,Flagged form actions / total forms,True,Aljofey et al. (2022); approved literature feature family
+H04,script_external_ratio,External valid script sources / valid script sources,True,Aljofey et al. (2022); approved literature feature family
+H05,image_external_ratio,External valid image sources / valid image sources,True,Aljofey et al. (2022); approved literature feature family
+H06,iframe_external_ratio,External valid iframe/frame sources / valid frame sources,True,Aljofey et al. (2022); approved literature feature family
+H07,link_resource_external_ratio,External valid link resources / valid link resources,True,Aljofey et al. (2022); approved literature feature family
+H08,overall_external_resource_ratio,External valid references / all supported valid references,True,Study operationalisation of established domain-consistency literature
+H09,unique_external_registered_domains,Distinct external registered domains among supported valid references,True,Study operationalisation of established domain-consistency literature
+H10,dominant_resource_domain_mismatch,Dominant referenced registered domain differs from page domain,True,Study operationalisation of established domain-consistency literature

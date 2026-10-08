@@ -1,0 +1,2 @@
+feature,decision,reason,max_abs_spearman_h01_h07,vif,decision_partition,decision_rows,vif_complete_cases,vif_policy,provisional_smoke
+overall_external_resource_ratio,retain,Neither estimable threshold is triggered; retain by predeclared rule.,0.673459970025363,5.7231806691717875,internal_train,397480,397005,complete-case H design; constants excluded; centred auxiliary least squares,False

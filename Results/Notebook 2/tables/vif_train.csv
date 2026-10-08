@@ -1,0 +1,11 @@
+feature,vif,status,complete_case_n
+anchor_external_ratio,1.415706645644021,estimated,397005
+form_external_ratio,1.0135537082553119,estimated,397005
+form_invalid_action_ratio,1.0267745644741053,estimated,397005
+script_external_ratio,1.9108984272912168,estimated,397005
+image_external_ratio,1.501597674014417,estimated,397005
+iframe_external_ratio,1.4040045884598857,estimated,397005
+link_resource_external_ratio,2.2232523826413164,estimated,397005
+overall_external_resource_ratio,5.7231806691717875,estimated,397005
+unique_external_registered_domains,1.1876326440080058,estimated,397005
+dominant_resource_domain_mismatch,3.701371831478344,estimated,397005

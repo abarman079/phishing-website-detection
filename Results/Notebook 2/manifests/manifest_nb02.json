@@ -1,0 +1,299 @@
+{
+  "notebook": "02_html_domain_consistency_features.ipynb",
+  "mode": "FULL",
+  "dataset_id": "phreshphish/phreshphish",
+  "dataset_version": "1.0.1",
+  "revision": "eabec4b7a66324b79cc8a0ad856d1731dc26fe1a",
+  "nb01_manifest_reference": "/kaggle/input/datasets/abarman79/notebook-1-full-output/manifest_nb01.json",
+  "nb01_manifest_sha256": "cf5c4cee0a69f683f91763aa6f6e371ef4b8ac54505503fb29b8767e9411c807",
+  "input_hashes": {
+    "features/url_features_train.parquet": "e9126dccb20410ada325a923803e23679920a3d8ee135686a61ed2099f074a9f",
+    "features/url_features_test.parquet": "0b14139e38ee61c438dcc3d49b9fbc211168651d82581850464219321073cc9f",
+    "manifests/manifest_nb01.json": "cf5c4cee0a69f683f91763aa6f6e371ef4b8ac54505503fb29b8767e9411c807",
+    "tables/url_feature_dictionary.csv": "f47ff6fd95dd03bf2437d1a43524d7b481b5c2999d0f50b8396a1d633a629ee7",
+    "manifests/temporal_split_preflight.json": "bbaeadfd211b997d2081b4be202f1b9bdd5d60505f8da61c19da3f9e2c8438ad",
+    "manifests/url_feature_names.json": "48cb0868f23ada7913cc29604697b3bb9135d6a82751a999aadabad5949c4b97",
+    "manifests/label_mapping.json": "f584033ac6ac72c01a44e0d06681fa7fda99ba178805a500c768e2dd35887bf2",
+    "manifests/public_suffix_list.dat": "b69315c085d53972724b8f2df111ffc329b0c84fe0a47d62c8c91655cc774a38"
+  },
+  "rows": {
+    "train": 498255,
+    "test": 168060
+  },
+  "url_features": [
+    "url_length",
+    "hostname_length",
+    "path_length",
+    "query_length",
+    "num_dots",
+    "num_hyphens",
+    "num_digits",
+    "digit_ratio",
+    "num_subdomains",
+    "path_depth",
+    "num_query_params",
+    "has_ip_host",
+    "has_punycode",
+    "has_at_symbol",
+    "url_entropy"
+  ],
+  "candidate_h_features": [
+    "anchor_external_ratio",
+    "form_external_ratio",
+    "form_invalid_action_ratio",
+    "script_external_ratio",
+    "image_external_ratio",
+    "iframe_external_ratio",
+    "link_resource_external_ratio",
+    "overall_external_resource_ratio",
+    "unique_external_registered_domains",
+    "dominant_resource_domain_mismatch"
+  ],
+  "retained_h_features": [
+    "anchor_external_ratio",
+    "form_external_ratio",
+    "form_invalid_action_ratio",
+    "script_external_ratio",
+    "image_external_ratio",
+    "iframe_external_ratio",
+    "link_resource_external_ratio",
+    "overall_external_resource_ratio",
+    "unique_external_registered_domains",
+    "dominant_resource_domain_mismatch"
+  ],
+  "h08_decision": {
+    "feature": "overall_external_resource_ratio",
+    "decision": "retain",
+    "reason": "Neither estimable threshold is triggered; retain by predeclared rule.",
+    "max_abs_spearman_h01_h07": 0.673459970025363,
+    "vif": 5.7231806691717875,
+    "decision_partition": "internal_train",
+    "decision_rows": 397480,
+    "vif_complete_cases": 397005,
+    "vif_policy": "complete-case H design; constants excluded; centred auxiliary least squares",
+    "provisional_smoke": false
+  },
+  "internal_cutoff_inclusive": "2025-07-09",
+  "h08_decision_partition": "internal_train",
+  "psl": {
+    "package": "tldextract==5.3.0",
+    "sha256": "b69315c085d53972724b8f2df111ffc329b0c84fe0a47d62c8c91655cc774a38",
+    "include_psl_private_domains": false,
+    "suffix_list_urls": [],
+    "offline": true
+  },
+  "parser_policy": {
+    "parser": "stdlib HTMLParser",
+    "network_requests_to_pages": false,
+    "base_tag": "ignored; resolve against saved page URL",
+    "duplicate_attributes": "first wins",
+    "domain_reference_population": "HTTP(S), known ICANN eTLD+1; IP refs excluded",
+    "form_flag": "missing/empty/fragment/non-HTTP(S)/malformed; not browser validity",
+    "h10_tie": "lexicographically first ASCII eTLD+1",
+    "h10_no_references": 0.0,
+    "missing_html_or_parser_exception": "all H NaN; retain row",
+    "page_domain_unavailable": "domain H NaN; H03 available only if page URL parses",
+    "malformed_html": "tolerant parser; does not certify browser-equivalent DOM"
+  },
+  "packages": {
+    "datasets": "4.4.1",
+    "huggingface-hub": "0.36.0",
+    "pyarrow": "21.0.0",
+    "tldextract": "5.3.0",
+    "fsspec": "2025.10.0",
+    "numpy": "2.1.3",
+    "pandas": "2.3.3",
+    "matplotlib": "3.10.0",
+    "scipy": "1.16.3",
+    "xlsxwriter": "3.2.9",
+    "python": "3.13.15"
+  },
+  "runtime": [
+    {
+      "stage": "probe",
+      "split": "train",
+      "rows": 10,
+      "seconds": 4.583815307999998
+    },
+    {
+      "stage": "extraction",
+      "split": "train",
+      "rows": 498255,
+      "seconds": 16104.274079108
+    },
+    {
+      "stage": "extraction",
+      "split": "test",
+      "rows": 168060,
+      "seconds": 5599.014137893999
+    }
+  ],
+  "validation": [
+    {
+      "split": "train",
+      "rows": 498255,
+      "unique_sha": true,
+      "url_features_unchanged": true,
+      "h_ranges_valid": true
+    },
+    {
+      "split": "test",
+      "rows": 168060,
+      "unique_sha": true,
+      "url_features_unchanged": true,
+      "h_ranges_valid": true
+    }
+  ],
+  "html_qc": [
+    {
+      "split": "train",
+      "rows": 498255,
+      "html_missing_n": 0,
+      "parser_exception_n": 0,
+      "page_domain_unavailable_n": 561,
+      "dominant_tie_n": 16057,
+      "max_html_characters": 76259682,
+      "anchor_external_ratio_missing_n": 561,
+      "form_external_ratio_missing_n": 561,
+      "form_invalid_action_ratio_missing_n": 17,
+      "script_external_ratio_missing_n": 561,
+      "image_external_ratio_missing_n": 561,
+      "iframe_external_ratio_missing_n": 561,
+      "link_resource_external_ratio_missing_n": 561,
+      "overall_external_resource_ratio_missing_n": 561,
+      "unique_external_registered_domains_missing_n": 561,
+      "dominant_resource_domain_mismatch_missing_n": 561
+    },
+    {
+      "split": "test",
+      "rows": 168060,
+      "html_missing_n": 0,
+      "parser_exception_n": 0,
+      "page_domain_unavailable_n": 272,
+      "dominant_tie_n": 6221,
+      "max_html_characters": 63424073,
+      "anchor_external_ratio_missing_n": 272,
+      "form_external_ratio_missing_n": 272,
+      "form_invalid_action_ratio_missing_n": 17,
+      "script_external_ratio_missing_n": 272,
+      "image_external_ratio_missing_n": 272,
+      "iframe_external_ratio_missing_n": 272,
+      "link_resource_external_ratio_missing_n": 272,
+      "overall_external_resource_ratio_missing_n": 272,
+      "unique_external_registered_domains_missing_n": 272,
+      "dominant_resource_domain_mismatch_missing_n": 272
+    }
+  ],
+  "constant_review_flags": [],
+  "global_strict_temporal_boundary": false,
+  "official_splits_unchanged": true,
+  "official_test_evaluated": false,
+  "artifacts": {
+    "features/h_test_extraction.parquet": {
+      "bytes": 13511660,
+      "sha256": "c4cef63b02287817c42b5496222676c8bde4a69634800191661dcd4e8c94ef3c"
+    },
+    "features/h_train_extraction.parquet": {
+      "bytes": 40445129,
+      "sha256": "ebaad16323fc3f10b897741b41c95bda2194972d8ecfe35361d4181fd92e3684"
+    },
+    "features/h_train_probe.parquet": {
+      "bytes": 13344,
+      "sha256": "1482a2040a0a40c7fa18cdaac2bf5f5e8367885076b7a8ced47a5656f0a9596e"
+    },
+    "features/hybrid_features_test.parquet": {
+      "bytes": 18725470,
+      "sha256": "7d0bcc0835bb1d89a7147dc7b81412b193bbd76ca6692aeb11db49685fbf8e80"
+    },
+    "features/hybrid_features_train.parquet": {
+      "bytes": 54534585,
+      "sha256": "e0a5768e7b60916db32f57f0c078978017d88731f2baf3121ebfe77fbdd3030f"
+    },
+    "figures/F08_html_element_availability_by_class.png": {
+      "bytes": 120159,
+      "sha256": "23d7c3c5aef98d0465ca45e564b1fe2b2c3dbc340d7bd8c2d1245ba248a732c1"
+    },
+    "figures/F09_html_zero_inflation_by_feature.png": {
+      "bytes": 82326,
+      "sha256": "1d167dd0ee1ea5782af769aae8bdfcd0afb91bf0a64cd14cb21efe1ca7c34353"
+    },
+    "figures/F10_h_feature_distributions_by_class.png": {
+      "bytes": 185311,
+      "sha256": "22ac55dc411fd066d929266b9fece5e2ab51adee38164ce9459c8691be3ff226"
+    },
+    "figures/F11_h_feature_correlation_heatmap.png": {
+      "bytes": 278858,
+      "sha256": "84ec0d172221e61d7bbe87221ffeecf66c01d8ca13aebd94e41aebe6ca4eae13"
+    },
+    "figures/F12_h08_redundancy_diagnostic.png": {
+      "bytes": 117033,
+      "sha256": "4cac04ebcd14fe857b9cbceb0a36a5ac3d56018bb39fe910924d5c534eedf866"
+    },
+    "logs/nb02_runtime.csv": {
+      "bytes": 139,
+      "sha256": "f86ab887103dace02ce963ef724fdb3dc763c93ff49ae9d254b89f618eecef9e"
+    },
+    "manifests/final_feature_set.json": {
+      "bytes": 3877,
+      "sha256": "3bb24f1e9c1ffc6a02d0a7307e60fa78c68fc0f1dedb3309d0ab025cd97d729a"
+    },
+    "manifests/package_versions_nb02.csv": {
+      "bytes": 191,
+      "sha256": "6b8e21fab6ba645e967dfcfd0880c47eed835b892041f70917bd62c5fb71c279"
+    },
+    "manifests/parser_policy.json": {
+      "bytes": 645,
+      "sha256": "273fb0e6ad71784ae5d6a6fae4db842145ae914a974c54609885e08a28972c9f"
+    },
+    "manifests/public_suffix_list.dat": {
+      "bytes": 318581,
+      "sha256": "b69315c085d53972724b8f2df111ffc329b0c84fe0a47d62c8c91655cc774a38"
+    },
+    "tables/NB02_HTML_Domain_Consistency_Diagnostics.xlsx": {
+      "bytes": 22590,
+      "sha256": "d3da5f8147332edc2b1d1fd1f76dd0a50b905bd0e9f7c12c2e587b03e25997c8"
+    },
+    "tables/h08_redundancy_summary.csv": {
+      "bytes": 391,
+      "sha256": "9d726ab1892709a8aa9b90b044829551c36e37efd0ff9cade92db4e6dd899734"
+    },
+    "tables/h_feature_correlations_train.csv": {
+      "bytes": 2366,
+      "sha256": "b97e2185f35e82705fbd52ac3840f719a6963a2eef1361e6d0a2c10eee6cb390"
+    },
+    "tables/html_class_summary_internal_train.csv": {
+      "bytes": 4028,
+      "sha256": "a6882abe67ecee3d4775edf60f99824cb74a65f63e4bcf35f964cc84894b9387"
+    },
+    "tables/html_constant_feature_review.csv": {
+      "bytes": 646,
+      "sha256": "ddc9785c6d190358a1b6ea3c405d98fe95d1ce380d51e288025d774175be0454"
+    },
+    "tables/html_denominator_summary.csv": {
+      "bytes": 1952,
+      "sha256": "47ad86ad7d2855928025ef23b97e9c9b30de147c14c4664d54ea8269ef4d7bf1"
+    },
+    "tables/html_element_availability.csv": {
+      "bytes": 1125,
+      "sha256": "28d29d9fc4fe4a5f9cc96af9b48040c88b76b4d533e6b5891ba62051ad61786c"
+    },
+    "tables/html_feature_dictionary.csv": {
+      "bytes": 1577,
+      "sha256": "76b40cc8c1b939353b69b4859a2617f76bea21e79af17ec157135c5a1c464a6d"
+    },
+    "tables/html_parser_failure_summary.csv": {
+      "bytes": 617,
+      "sha256": "1636ccaaae14f3b584e5376661050bb3c06bffef101d46a3d8d064cc75728fe7"
+    },
+    "tables/html_zero_inflation_summary.csv": {
+      "bytes": 3595,
+      "sha256": "18dfadeb21ee602fb758cd314055bd9d0f6a6725fd6abdcec7054e3f9e8c1b8e"
+    },
+    "tables/vif_train.csv": {
+      "bytes": 655,
+      "sha256": "77b841668e1707b710eede39742f87b54b41e9daa350ea4cc4b228077f42d855"
+    }
+  },
+  "blockers": [],
+  "ready_for_nb03": true
+}

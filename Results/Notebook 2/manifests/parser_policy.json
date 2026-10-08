@@ -1,0 +1,13 @@
+{
+  "parser": "stdlib HTMLParser",
+  "network_requests_to_pages": false,
+  "base_tag": "ignored; resolve against saved page URL",
+  "duplicate_attributes": "first wins",
+  "domain_reference_population": "HTTP(S), known ICANN eTLD+1; IP refs excluded",
+  "form_flag": "missing/empty/fragment/non-HTTP(S)/malformed; not browser validity",
+  "h10_tie": "lexicographically first ASCII eTLD+1",
+  "h10_no_references": 0.0,
+  "missing_html_or_parser_exception": "all H NaN; retain row",
+  "page_domain_unavailable": "domain H NaN; H03 available only if page URL parses",
+  "malformed_html": "tolerant parser; does not certify browser-equivalent DOM"
+}

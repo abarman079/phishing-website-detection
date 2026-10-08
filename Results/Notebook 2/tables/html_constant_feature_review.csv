@@ -1,0 +1,11 @@
+feature,observed_n,most_common_fraction,review_gt_99_5_pct
+anchor_external_ratio,397005,0.35146912507399153,False
+form_external_ratio,397005,0.9356557222201232,False
+form_invalid_action_ratio,397467,0.7103583442147399,False
+script_external_ratio,397005,0.2590294832558784,False
+image_external_ratio,397005,0.46330650747471697,False
+iframe_external_ratio,397005,0.6466593619727711,False
+link_resource_external_ratio,397005,0.24949559829221293,False
+overall_external_resource_ratio,397005,0.06963136484427149,False
+unique_external_registered_domains,397005,0.1540005793377917,False
+dominant_resource_domain_mismatch,397005,0.7649979219405297,False
