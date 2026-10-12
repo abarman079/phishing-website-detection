@@ -1,0 +1,17 @@
+model_id,stage,candidate,fit_rows,fit_seconds,rss_before_bytes,rss_after_bytes,converged,warnings
+M0,selection,M0_candidate_1,397480,0.014041813000176262,1431461888,1431527424,True,
+M1,selection,M1_candidate_1,397480,4.026353814999993,1479225344,1527463936,True,DeprecationWarning: scipy.optimize: The `disp` and `iprint` options of the L-BFGS-B solver are deprecated and will be removed in SciPy 1.18.0.
+M1,selection,M1_candidate_2,397480,4.300878694999938,1497989120,1545687040,True,DeprecationWarning: scipy.optimize: The `disp` and `iprint` options of the L-BFGS-B solver are deprecated and will be removed in SciPy 1.18.0.
+M1,selection,M1_candidate_3,397480,4.430815744000029,1497989120,1545687040,True,DeprecationWarning: scipy.optimize: The `disp` and `iprint` options of the L-BFGS-B solver are deprecated and will be removed in SciPy 1.18.0.
+M2,selection,M2_candidate_1,397480,7.764863926000089,1529790464,1625133056,True,DeprecationWarning: scipy.optimize: The `disp` and `iprint` options of the L-BFGS-B solver are deprecated and will be removed in SciPy 1.18.0.
+M2,selection,M2_candidate_2,397480,10.552266185999997,1566068736,1645568000,True,DeprecationWarning: scipy.optimize: The `disp` and `iprint` options of the L-BFGS-B solver are deprecated and will be removed in SciPy 1.18.0.
+M2,selection,M2_candidate_3,397480,10.543665610000062,1566068736,1645568000,True,DeprecationWarning: scipy.optimize: The `disp` and `iprint` options of the L-BFGS-B solver are deprecated and will be removed in SciPy 1.18.0.
+M3,selection,M3_candidate_1,397480,87.6796557529999,1534267392,3071483904,True,
+M3,selection,M3_candidate_2,397480,79.53093890199989,2626789376,3059421184,True,
+M4,selection,M4_candidate_1,397480,155.4883756470001,2771525632,3102121984,True,
+M4,selection,M4_candidate_2,397480,142.74773592400015,2834812928,2923618304,True,
+M0,final_refit,frozen,498255,0.014433064000058948,1834332160,1834332160,True,
+M1,final_refit,frozen,498255,4.260580855000171,1834332160,1834332160,True,DeprecationWarning: scipy.optimize: The `disp` and `iprint` options of the L-BFGS-B solver are deprecated and will be removed in SciPy 1.18.0.
+M2,final_refit,frozen,498255,10.921964024000317,1834332160,1834332160,True,DeprecationWarning: scipy.optimize: The `disp` and `iprint` options of the L-BFGS-B solver are deprecated and will be removed in SciPy 1.18.0.
+M3,final_refit,frozen,498255,114.76111862000016,1834332160,2252206080,True,
+M4,final_refit,frozen,498255,194.65250447900007,1981726720,2273284096,True,

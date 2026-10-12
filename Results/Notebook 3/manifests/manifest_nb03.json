@@ -1,0 +1,781 @@
+{
+  "notebook": "03_temporal_validation_and_model_selection.ipynb",
+  "physical_cells": 15,
+  "run_id": "2026-10-12T05:33:57.028565+00:00",
+  "mode": "FULL",
+  "packages": {
+    "numpy": "2.1.3",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.6.1",
+    "scipy": "1.16.3",
+    "joblib": "1.6.0",
+    "pyarrow": "23.0.1",
+    "matplotlib": "3.10.0",
+    "openpyxl": "3.1.5",
+    "psutil": "5.9.5",
+    "python": "3.13.15"
+  },
+  "dataset": {
+    "id": "phreshphish/phreshphish",
+    "version": "1.0.1",
+    "revision": "eabec4b7a66324b79cc8a0ad856d1731dc26fe1a"
+  },
+  "inputs": {
+    "manifest_nb02.json": {
+      "path": "/kaggle/input/datasets/abarman79/notebook-2-files/manifest_nb02.json",
+      "bytes": 10739,
+      "sha256": "0ba0c9bc8ab4b00a7952f39603ad83c075e5e61ea6291dd4617c347b8daa9daa"
+    },
+    "hybrid_features_train.parquet": {
+      "path": "/kaggle/input/datasets/abarman79/notebook-2-files/hybrid_features_train.parquet",
+      "bytes": 54534585,
+      "sha256": "e0a5768e7b60916db32f57f0c078978017d88731f2baf3121ebfe77fbdd3030f"
+    },
+    "final_feature_set.json": {
+      "path": "/kaggle/input/datasets/abarman79/notebook-2-files/final_feature_set.json",
+      "bytes": 3877,
+      "sha256": "3bb24f1e9c1ffc6a02d0a7307e60fa78c68fc0f1dedb3309d0ab025cd97d729a"
+    },
+    "html_feature_dictionary.csv": {
+      "path": "/kaggle/input/datasets/abarman79/notebook-2-files/html_feature_dictionary.csv",
+      "bytes": 1577,
+      "sha256": "76b40cc8c1b939353b69b4859a2617f76bea21e79af17ec157135c5a1c464a6d"
+    }
+  },
+  "artifacts": {
+    "figures/F13_internal_temporal_split_timeline.png": {
+      "path": "/kaggle/working/nb03/full/figures/F13_internal_temporal_split_timeline.png",
+      "bytes": 80084,
+      "sha256": "b583d72733817afb0510260c452ab8e64291b0cb99ea8109f1eb478781ec26d0"
+    },
+    "figures/F14_internal_split_class_prevalence.png": {
+      "path": "/kaggle/working/nb03/full/figures/F14_internal_split_class_prevalence.png",
+      "bytes": 72167,
+      "sha256": "f96579a7ef738a477ef4a760358b1719c947ae92defba965f4ddb7f9a4e702ab"
+    },
+    "figures/F15_validation_model_AP_comparison.png": {
+      "path": "/kaggle/working/nb03/full/figures/F15_validation_model_AP_comparison.png",
+      "bytes": 81323,
+      "sha256": "e56f29b809a16dffce569268aa6567b183cf03736b05b285b6c85e9ef972f316"
+    },
+    "figures/F16_validation_PR_curves.png": {
+      "path": "/kaggle/working/nb03/full/figures/F16_validation_PR_curves.png",
+      "bytes": 154386,
+      "sha256": "88a1a2b3d02c3a18f5bb3d1cb52635aad2b9685aacf6f653159bfe2a41108670"
+    },
+    "figures/F17_validation_ROC_curves.png": {
+      "path": "/kaggle/working/nb03/full/figures/F17_validation_ROC_curves.png",
+      "bytes": 201114,
+      "sha256": "4df01338ca0629b3dc34a21a0ae4948ce3834062c9ed9291f0d0cfecabb68a49"
+    },
+    "figures/F18_validation_confusion_matrices.png": {
+      "path": "/kaggle/working/nb03/full/figures/F18_validation_confusion_matrices.png",
+      "bytes": 191105,
+      "sha256": "bd58fd57d616a1a46e10aa9e7db33f19cf1856a0d652ef4e23691e7e977d6d70"
+    },
+    "logs/nb03_runtime.csv": {
+      "path": "/kaggle/working/nb03/full/logs/nb03_runtime.csv",
+      "bytes": 2511,
+      "sha256": "c7133dce0a222816bcba69f908479d001f5747643f8427d0504d4f5d377f6c3f"
+    },
+    "manifests/frozen_model_config.json": {
+      "path": "/kaggle/working/nb03/full/manifests/frozen_model_config.json",
+      "bytes": 10357,
+      "sha256": "02609b5b0dbfea73548bc74e8228104c2256abad2685663eff438655d9bad057"
+    },
+    "manifests/package_versions_nb03.csv": {
+      "path": "/kaggle/working/nb03/full/manifests/package_versions_nb03.csv",
+      "bytes": 162,
+      "sha256": "8fb007244ad326b6b2608714aa5c784195cfdf408846708292b81779749f01a6"
+    },
+    "manifests/temporal_split.json": {
+      "path": "/kaggle/working/nb03/full/manifests/temporal_split.json",
+      "bytes": 1089,
+      "sha256": "8cf1a806271cd2f1fda9467a2e2b096ea7f3decbf44775ebc6ea5857bec839e7"
+    },
+    "model_selection_report.md": {
+      "path": "/kaggle/working/nb03/full/model_selection_report.md",
+      "bytes": 1284,
+      "sha256": "952f9e64ee11b34bcf07e0abd39ff8312992d6ce0123079be5633b16b74de779"
+    },
+    "models/M0_dummy_majority.joblib": {
+      "path": "/kaggle/working/nb03/full/models/M0_dummy_majority.joblib",
+      "bytes": 784,
+      "sha256": "8c5f4a083656544b6cb440e4bcbc71e763907cae7c0dd766bbe39b8f890b0b33"
+    },
+    "models/M1_lr_url.joblib": {
+      "path": "/kaggle/working/nb03/full/models/M1_lr_url.joblib",
+      "bytes": 1914,
+      "sha256": "63f3a7f06cce2006b774b0cc06a4bc7065558490a7853630a50162150ac8547e"
+    },
+    "models/M2_lr_hybrid.joblib": {
+      "path": "/kaggle/working/nb03/full/models/M2_lr_hybrid.joblib",
+      "bytes": 2423,
+      "sha256": "5108d94590a10c53ca9bd1eb5d6f0ecc0b4ba7f913d0b670acc6befca2298885"
+    },
+    "models/M3_rf_url.joblib": {
+      "path": "/kaggle/working/nb03/full/models/M3_rf_url.joblib",
+      "bytes": 135549608,
+      "sha256": "fcf0bbce6135be255434d39901c763165e3d45c185a3a6798f8ddce5b8bb685c"
+    },
+    "models/M4_rf_hybrid.joblib": {
+      "path": "/kaggle/working/nb03/full/models/M4_rf_hybrid.joblib",
+      "bytes": 114006730,
+      "sha256": "7721e9a9be88c757b8ac99de29bf4fb0a882f6865b5c85f1bb5d5ff072f9620c"
+    },
+    "tables/NB03_Temporal_Validation_and_Model_Selection.xlsx": {
+      "path": "/kaggle/working/nb03/full/tables/NB03_Temporal_Validation_and_Model_Selection.xlsx",
+      "bytes": 23397,
+      "sha256": "4f8fac4f6d327df453b9d807878603e06b6f41d720c80cd3d4a7db6b2946487f"
+    },
+    "tables/fitted_preprocessing_parameters.csv": {
+      "path": "/kaggle/working/nb03/full/tables/fitted_preprocessing_parameters.csv",
+      "bytes": 3720,
+      "sha256": "590b5699b7ff6a43cc99a09f842bf474e881f3e5f71c0260141d3a5e96e4ecf9"
+    },
+    "tables/frozen_features.csv": {
+      "path": "/kaggle/working/nb03/full/tables/frozen_features.csv",
+      "bytes": 650,
+      "sha256": "e47b8f4d07b07be3aa952c7b15589e2e4ea6cfcf6892c12c1667def6ace09df7"
+    },
+    "tables/internal_validation_predictions.parquet": {
+      "path": "/kaggle/working/nb03/full/tables/internal_validation_predictions.parquet",
+      "bytes": 11087186,
+      "sha256": "4239fa2ca8c05fd168531e638d6f0336ef2658dade551278990833f248ece3d0"
+    },
+    "tables/model_candidate_results.csv": {
+      "path": "/kaggle/working/nb03/full/tables/model_candidate_results.csv",
+      "bytes": 3359,
+      "sha256": "7f9e9ba9e89ea24ffdab32778ee5461d720d02110e37bfcd27c8d242cca51f1b"
+    },
+    "tables/model_file_sizes.csv": {
+      "path": "/kaggle/working/nb03/full/tables/model_file_sizes.csv",
+      "bytes": 798,
+      "sha256": "31f2fd8b9d510641c20bb0954ee9524cd132292a7a927501c80d5b98a38d8a34"
+    },
+    "tables/model_training_runtime.csv": {
+      "path": "/kaggle/working/nb03/full/tables/model_training_runtime.csv",
+      "bytes": 2511,
+      "sha256": "c7133dce0a222816bcba69f908479d001f5747643f8427d0504d4f5d377f6c3f"
+    },
+    "tables/selected_hyperparameters.csv": {
+      "path": "/kaggle/working/nb03/full/tables/selected_hyperparameters.csv",
+      "bytes": 1053,
+      "sha256": "0b0d529f3ed1b4d7b2779faa0b4344e233a196dcb9cfa6df0aa3b0c67d629355"
+    },
+    "tables/temporal_split_summary.csv": {
+      "path": "/kaggle/working/nb03/full/tables/temporal_split_summary.csv",
+      "bytes": 209,
+      "sha256": "e46049d45a68ac5efcad459b2d78aeca003bdf1b63cf904097cd3c0456d01efc"
+    },
+    "tables/validation_metrics.csv": {
+      "path": "/kaggle/working/nb03/full/tables/validation_metrics.csv",
+      "bytes": 1486,
+      "sha256": "363e87766126dedbabf58d13ef8796423787e65fb4fa6a7d17d823e11d3eec4b"
+    }
+  },
+  "temporal_split": {
+    "cutoff_inclusive": "2025-07-09",
+    "rule": "whole day <= cutoff: internal_train; later: internal_validation",
+    "original_rule": "whole-day cumulative count nearest 80%; earlier tie wins; frozen by NB1",
+    "development_partition_agreement": true,
+    "sha_disjoint": true,
+    "chronological": true,
+    "official_training_rows": 498255,
+    "partitions": [
+      {
+        "partition": "internal_train",
+        "rows": 397480,
+        "benign": 204388,
+        "phishing": 193092,
+        "start": "2024-07-02",
+        "end": "2025-07-09",
+        "prevalence": 0.48579048002415215
+      },
+      {
+        "partition": "internal_validation",
+        "rows": 100775,
+        "benign": 72341,
+        "phishing": 28434,
+        "start": "2025-07-10",
+        "end": "2025-09-08",
+        "prevalence": 0.282153311833292
+      }
+    ],
+    "execution_rows": {
+      "internal_train": 397480,
+      "internal_validation": 100775,
+      "refit": 498255
+    },
+    "mode": "FULL",
+    "global_strict_temporal_boundary": false,
+    "official_boundary_caveat": "Official benign train/test share 2025-09-08 (handoff provenance only; test not read)."
+  },
+  "features": {
+    "url": [
+      "url_length",
+      "hostname_length",
+      "path_length",
+      "query_length",
+      "num_dots",
+      "num_hyphens",
+      "num_digits",
+      "digit_ratio",
+      "num_subdomains",
+      "path_depth",
+      "num_query_params",
+      "has_ip_host",
+      "has_punycode",
+      "has_at_symbol",
+      "url_entropy"
+    ],
+    "retained_html": [
+      "anchor_external_ratio",
+      "form_external_ratio",
+      "form_invalid_action_ratio",
+      "script_external_ratio",
+      "image_external_ratio",
+      "iframe_external_ratio",
+      "link_resource_external_ratio",
+      "overall_external_resource_ratio",
+      "unique_external_registered_domains",
+      "dominant_resource_domain_mismatch"
+    ],
+    "combined": [
+      "url_length",
+      "hostname_length",
+      "path_length",
+      "query_length",
+      "num_dots",
+      "num_hyphens",
+      "num_digits",
+      "digit_ratio",
+      "num_subdomains",
+      "path_depth",
+      "num_query_params",
+      "has_ip_host",
+      "has_punycode",
+      "has_at_symbol",
+      "url_entropy",
+      "anchor_external_ratio",
+      "form_external_ratio",
+      "form_invalid_action_ratio",
+      "script_external_ratio",
+      "image_external_ratio",
+      "iframe_external_ratio",
+      "link_resource_external_ratio",
+      "overall_external_resource_ratio",
+      "unique_external_registered_domains",
+      "dominant_resource_domain_mismatch"
+    ]
+  },
+  "candidate_grids": {
+    "M1": [
+      {
+        "C": 0.1
+      },
+      {
+        "C": 1.0
+      },
+      {
+        "C": 10.0
+      }
+    ],
+    "M2": [
+      {
+        "C": 0.1
+      },
+      {
+        "C": 1.0
+      },
+      {
+        "C": 10.0
+      }
+    ],
+    "M3": [
+      {
+        "max_depth": null
+      },
+      {
+        "max_depth": 20
+      }
+    ],
+    "M4": [
+      {
+        "max_depth": null
+      },
+      {
+        "max_depth": 20
+      }
+    ]
+  },
+  "selection_decisions": [
+    {
+      "model_id": "M0",
+      "model_name": "Majority reference",
+      "candidate_id": "M0_candidate_1",
+      "selected_parameters": "{}",
+      "validation_AP": 0.282153311833292,
+      "criterion": "average_precision_score",
+      "tie_policy": "Maximum internal-validation average_precision_score; exact ties retain first candidate in declared order"
+    },
+    {
+      "model_id": "M1",
+      "model_name": "LR URL",
+      "candidate_id": "M1_candidate_3",
+      "selected_parameters": "{\"C\": 10.0}",
+      "validation_AP": 0.7361940333076202,
+      "criterion": "average_precision_score",
+      "tie_policy": "Maximum internal-validation average_precision_score; exact ties retain first candidate in declared order"
+    },
+    {
+      "model_id": "M2",
+      "model_name": "LR URL+HTML",
+      "candidate_id": "M2_candidate_3",
+      "selected_parameters": "{\"C\": 10.0}",
+      "validation_AP": 0.8148332276577142,
+      "criterion": "average_precision_score",
+      "tie_policy": "Maximum internal-validation average_precision_score; exact ties retain first candidate in declared order"
+    },
+    {
+      "model_id": "M3",
+      "model_name": "RF URL",
+      "candidate_id": "M3_candidate_2",
+      "selected_parameters": "{\"max_depth\": 20}",
+      "validation_AP": 0.8229978862254623,
+      "criterion": "average_precision_score",
+      "tie_policy": "Maximum internal-validation average_precision_score; exact ties retain first candidate in declared order"
+    },
+    {
+      "model_id": "M4",
+      "model_name": "RF URL+HTML",
+      "candidate_id": "M4_candidate_2",
+      "selected_parameters": "{\"max_depth\": 20}",
+      "validation_AP": 0.8948588240019208,
+      "criterion": "average_precision_score",
+      "tie_policy": "Maximum internal-validation average_precision_score; exact ties retain first candidate in declared order"
+    }
+  ],
+  "validation_metrics": [
+    {
+      "model_id": "M0",
+      "model_name": "Majority reference",
+      "evaluation": "internal temporal validation",
+      "mode": "FULL",
+      "accuracy": 0.717846688166708,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "mcc": 0.0,
+      "roc_auc": 0.5,
+      "AP": 0.282153311833292,
+      "FPR": 0.0,
+      "TN": 72341,
+      "FP": 0,
+      "FN": 28434,
+      "TP": 0,
+      "validation_negatives": 72341,
+      "validation_positives": 28434,
+      "threshold": 0.5,
+      "prediction_rule": "estimator.predict; exact tie goes to class 0"
+    },
+    {
+      "model_id": "M1",
+      "model_name": "LR URL",
+      "evaluation": "internal temporal validation",
+      "mode": "FULL",
+      "accuracy": 0.7930141404118085,
+      "precision": 0.6229188978677831,
+      "recall": 0.6750369276218612,
+      "f1": 0.6479315408375108,
+      "mcc": 0.5024966676958966,
+      "roc_auc": 0.7806213908515391,
+      "AP": 0.7361940333076202,
+      "FPR": 0.16061431276869273,
+      "TN": 60722,
+      "FP": 11619,
+      "FN": 9240,
+      "TP": 19194,
+      "validation_negatives": 72341,
+      "validation_positives": 28434,
+      "threshold": 0.5,
+      "prediction_rule": "estimator.predict; exact tie goes to class 0"
+    },
+    {
+      "model_id": "M2",
+      "model_name": "LR URL+HTML",
+      "evaluation": "internal temporal validation",
+      "mode": "FULL",
+      "accuracy": 0.8411411560406847,
+      "precision": 0.7180360088442775,
+      "recall": 0.7195259196736301,
+      "f1": 0.7187801921759446,
+      "mcc": 0.6080862894015354,
+      "roc_auc": 0.872334612529076,
+      "AP": 0.8148332276577142,
+      "FPR": 0.11105735336807619,
+      "TN": 64307,
+      "FP": 8034,
+      "FN": 7975,
+      "TP": 20459,
+      "validation_negatives": 72341,
+      "validation_positives": 28434,
+      "threshold": 0.5,
+      "prediction_rule": "estimator.predict; exact tie goes to class 0"
+    },
+    {
+      "model_id": "M3",
+      "model_name": "RF URL",
+      "evaluation": "internal temporal validation",
+      "mode": "FULL",
+      "accuracy": 0.8653038948151823,
+      "precision": 0.8003719275549805,
+      "recall": 0.696279102482943,
+      "f1": 0.7447056610870791,
+      "mcc": 0.6567515719544808,
+      "roc_auc": 0.8690221951662919,
+      "AP": 0.8229978862254623,
+      "FPR": 0.06826004617022159,
+      "TN": 67403,
+      "FP": 4938,
+      "FN": 8636,
+      "TP": 19798,
+      "validation_negatives": 72341,
+      "validation_positives": 28434,
+      "threshold": 0.5,
+      "prediction_rule": "estimator.predict; exact tie goes to class 0"
+    },
+    {
+      "model_id": "M4",
+      "model_name": "RF URL+HTML",
+      "evaluation": "internal temporal validation",
+      "mode": "FULL",
+      "accuracy": 0.9097792111138675,
+      "precision": 0.9234608985024958,
+      "recall": 0.7417176619539987,
+      "f1": 0.8226712435637384,
+      "mcc": 0.7713742603208018,
+      "roc_auc": 0.9291760463945816,
+      "AP": 0.8948588240019208,
+      "FPR": 0.02416333752643729,
+      "TN": 70593,
+      "FP": 1748,
+      "FN": 7344,
+      "TP": 21090,
+      "validation_negatives": 72341,
+      "validation_positives": 28434,
+      "threshold": 0.5,
+      "prediction_rule": "estimator.predict; exact tie goes to class 0"
+    }
+  ],
+  "model_fits": [
+    {
+      "model_id": "M0",
+      "stage": "final_refit",
+      "candidate": "frozen",
+      "fit_rows": 498255,
+      "fit_seconds": 0.014433064000058948,
+      "rss_before_bytes": 1834332160,
+      "rss_after_bytes": 1834332160,
+      "converged": true,
+      "warnings": ""
+    },
+    {
+      "model_id": "M1",
+      "stage": "final_refit",
+      "candidate": "frozen",
+      "fit_rows": 498255,
+      "fit_seconds": 4.260580855000171,
+      "rss_before_bytes": 1834332160,
+      "rss_after_bytes": 1834332160,
+      "converged": true,
+      "warnings": "DeprecationWarning: scipy.optimize: The `disp` and `iprint` options of the L-BFGS-B solver are deprecated and will be removed in SciPy 1.18.0."
+    },
+    {
+      "model_id": "M2",
+      "stage": "final_refit",
+      "candidate": "frozen",
+      "fit_rows": 498255,
+      "fit_seconds": 10.921964024000317,
+      "rss_before_bytes": 1834332160,
+      "rss_after_bytes": 1834332160,
+      "converged": true,
+      "warnings": "DeprecationWarning: scipy.optimize: The `disp` and `iprint` options of the L-BFGS-B solver are deprecated and will be removed in SciPy 1.18.0."
+    },
+    {
+      "model_id": "M3",
+      "stage": "final_refit",
+      "candidate": "frozen",
+      "fit_rows": 498255,
+      "fit_seconds": 114.76111862000016,
+      "rss_before_bytes": 1834332160,
+      "rss_after_bytes": 2252206080,
+      "converged": true,
+      "warnings": ""
+    },
+    {
+      "model_id": "M4",
+      "stage": "final_refit",
+      "candidate": "frozen",
+      "fit_rows": 498255,
+      "fit_seconds": 194.65250447900007,
+      "rss_before_bytes": 1981726720,
+      "rss_after_bytes": 2273284096,
+      "converged": true,
+      "warnings": ""
+    }
+  ],
+  "model_file_sizes": [
+    {
+      "model_id": "M0",
+      "path": "/kaggle/working/nb03/full/models/M0_dummy_majority.joblib",
+      "bytes": 784,
+      "sha256": "8c5f4a083656544b6cb440e4bcbc71e763907cae7c0dd766bbe39b8f890b0b33",
+      "reload_verified": true,
+      "fit_rows": 498255,
+      "feature_order_verified": true
+    },
+    {
+      "model_id": "M1",
+      "path": "/kaggle/working/nb03/full/models/M1_lr_url.joblib",
+      "bytes": 1914,
+      "sha256": "63f3a7f06cce2006b774b0cc06a4bc7065558490a7853630a50162150ac8547e",
+      "reload_verified": true,
+      "fit_rows": 498255,
+      "feature_order_verified": true
+    },
+    {
+      "model_id": "M2",
+      "path": "/kaggle/working/nb03/full/models/M2_lr_hybrid.joblib",
+      "bytes": 2423,
+      "sha256": "5108d94590a10c53ca9bd1eb5d6f0ecc0b4ba7f913d0b670acc6befca2298885",
+      "reload_verified": true,
+      "fit_rows": 498255,
+      "feature_order_verified": true
+    },
+    {
+      "model_id": "M3",
+      "path": "/kaggle/working/nb03/full/models/M3_rf_url.joblib",
+      "bytes": 135549608,
+      "sha256": "fcf0bbce6135be255434d39901c763165e3d45c185a3a6798f8ddce5b8bb685c",
+      "reload_verified": true,
+      "fit_rows": 498255,
+      "feature_order_verified": true
+    },
+    {
+      "model_id": "M4",
+      "path": "/kaggle/working/nb03/full/models/M4_rf_hybrid.joblib",
+      "bytes": 114006730,
+      "sha256": "7721e9a9be88c757b8ac99de29bf4fb0a882f6865b5c85f1bb5d5ff072f9620c",
+      "reload_verified": true,
+      "fit_rows": 498255,
+      "feature_order_verified": true
+    }
+  ],
+  "runtime": [
+    {
+      "model_id": "M0",
+      "stage": "selection",
+      "candidate": "M0_candidate_1",
+      "fit_rows": 397480,
+      "fit_seconds": 0.014041813000176262,
+      "rss_before_bytes": 1431461888,
+      "rss_after_bytes": 1431527424,
+      "converged": true,
+      "warnings": ""
+    },
+    {
+      "model_id": "M1",
+      "stage": "selection",
+      "candidate": "M1_candidate_1",
+      "fit_rows": 397480,
+      "fit_seconds": 4.026353814999993,
+      "rss_before_bytes": 1479225344,
+      "rss_after_bytes": 1527463936,
+      "converged": true,
+      "warnings": "DeprecationWarning: scipy.optimize: The `disp` and `iprint` options of the L-BFGS-B solver are deprecated and will be removed in SciPy 1.18.0."
+    },
+    {
+      "model_id": "M1",
+      "stage": "selection",
+      "candidate": "M1_candidate_2",
+      "fit_rows": 397480,
+      "fit_seconds": 4.300878694999938,
+      "rss_before_bytes": 1497989120,
+      "rss_after_bytes": 1545687040,
+      "converged": true,
+      "warnings": "DeprecationWarning: scipy.optimize: The `disp` and `iprint` options of the L-BFGS-B solver are deprecated and will be removed in SciPy 1.18.0."
+    },
+    {
+      "model_id": "M1",
+      "stage": "selection",
+      "candidate": "M1_candidate_3",
+      "fit_rows": 397480,
+      "fit_seconds": 4.430815744000029,
+      "rss_before_bytes": 1497989120,
+      "rss_after_bytes": 1545687040,
+      "converged": true,
+      "warnings": "DeprecationWarning: scipy.optimize: The `disp` and `iprint` options of the L-BFGS-B solver are deprecated and will be removed in SciPy 1.18.0."
+    },
+    {
+      "model_id": "M2",
+      "stage": "selection",
+      "candidate": "M2_candidate_1",
+      "fit_rows": 397480,
+      "fit_seconds": 7.764863926000089,
+      "rss_before_bytes": 1529790464,
+      "rss_after_bytes": 1625133056,
+      "converged": true,
+      "warnings": "DeprecationWarning: scipy.optimize: The `disp` and `iprint` options of the L-BFGS-B solver are deprecated and will be removed in SciPy 1.18.0."
+    },
+    {
+      "model_id": "M2",
+      "stage": "selection",
+      "candidate": "M2_candidate_2",
+      "fit_rows": 397480,
+      "fit_seconds": 10.552266185999997,
+      "rss_before_bytes": 1566068736,
+      "rss_after_bytes": 1645568000,
+      "converged": true,
+      "warnings": "DeprecationWarning: scipy.optimize: The `disp` and `iprint` options of the L-BFGS-B solver are deprecated and will be removed in SciPy 1.18.0."
+    },
+    {
+      "model_id": "M2",
+      "stage": "selection",
+      "candidate": "M2_candidate_3",
+      "fit_rows": 397480,
+      "fit_seconds": 10.543665610000062,
+      "rss_before_bytes": 1566068736,
+      "rss_after_bytes": 1645568000,
+      "converged": true,
+      "warnings": "DeprecationWarning: scipy.optimize: The `disp` and `iprint` options of the L-BFGS-B solver are deprecated and will be removed in SciPy 1.18.0."
+    },
+    {
+      "model_id": "M3",
+      "stage": "selection",
+      "candidate": "M3_candidate_1",
+      "fit_rows": 397480,
+      "fit_seconds": 87.6796557529999,
+      "rss_before_bytes": 1534267392,
+      "rss_after_bytes": 3071483904,
+      "converged": true,
+      "warnings": ""
+    },
+    {
+      "model_id": "M3",
+      "stage": "selection",
+      "candidate": "M3_candidate_2",
+      "fit_rows": 397480,
+      "fit_seconds": 79.53093890199989,
+      "rss_before_bytes": 2626789376,
+      "rss_after_bytes": 3059421184,
+      "converged": true,
+      "warnings": ""
+    },
+    {
+      "model_id": "M4",
+      "stage": "selection",
+      "candidate": "M4_candidate_1",
+      "fit_rows": 397480,
+      "fit_seconds": 155.4883756470001,
+      "rss_before_bytes": 2771525632,
+      "rss_after_bytes": 3102121984,
+      "converged": true,
+      "warnings": ""
+    },
+    {
+      "model_id": "M4",
+      "stage": "selection",
+      "candidate": "M4_candidate_2",
+      "fit_rows": 397480,
+      "fit_seconds": 142.74773592400015,
+      "rss_before_bytes": 2834812928,
+      "rss_after_bytes": 2923618304,
+      "converged": true,
+      "warnings": ""
+    },
+    {
+      "model_id": "M0",
+      "stage": "final_refit",
+      "candidate": "frozen",
+      "fit_rows": 498255,
+      "fit_seconds": 0.014433064000058948,
+      "rss_before_bytes": 1834332160,
+      "rss_after_bytes": 1834332160,
+      "converged": true,
+      "warnings": ""
+    },
+    {
+      "model_id": "M1",
+      "stage": "final_refit",
+      "candidate": "frozen",
+      "fit_rows": 498255,
+      "fit_seconds": 4.260580855000171,
+      "rss_before_bytes": 1834332160,
+      "rss_after_bytes": 1834332160,
+      "converged": true,
+      "warnings": "DeprecationWarning: scipy.optimize: The `disp` and `iprint` options of the L-BFGS-B solver are deprecated and will be removed in SciPy 1.18.0."
+    },
+    {
+      "model_id": "M2",
+      "stage": "final_refit",
+      "candidate": "frozen",
+      "fit_rows": 498255,
+      "fit_seconds": 10.921964024000317,
+      "rss_before_bytes": 1834332160,
+      "rss_after_bytes": 1834332160,
+      "converged": true,
+      "warnings": "DeprecationWarning: scipy.optimize: The `disp` and `iprint` options of the L-BFGS-B solver are deprecated and will be removed in SciPy 1.18.0."
+    },
+    {
+      "model_id": "M3",
+      "stage": "final_refit",
+      "candidate": "frozen",
+      "fit_rows": 498255,
+      "fit_seconds": 114.76111862000016,
+      "rss_before_bytes": 1834332160,
+      "rss_after_bytes": 2252206080,
+      "converged": true,
+      "warnings": ""
+    },
+    {
+      "model_id": "M4",
+      "stage": "final_refit",
+      "candidate": "frozen",
+      "fit_rows": 498255,
+      "fit_seconds": 194.65250447900007,
+      "rss_before_bytes": 1981726720,
+      "rss_after_bytes": 2273284096,
+      "converged": true,
+      "warnings": ""
+    }
+  ],
+  "elapsed_seconds_before_zip": 891.2489788949999,
+  "figures": [
+    "figures/F13_internal_temporal_split_timeline.png",
+    "figures/F14_internal_split_class_prevalence.png",
+    "figures/F15_validation_model_AP_comparison.png",
+    "figures/F16_validation_PR_curves.png",
+    "figures/F17_validation_ROC_curves.png",
+    "figures/F18_validation_confusion_matrices.png"
+  ],
+  "tables": [
+    "tables/NB03_Temporal_Validation_and_Model_Selection.xlsx",
+    "tables/fitted_preprocessing_parameters.csv",
+    "tables/frozen_features.csv",
+    "tables/internal_validation_predictions.parquet",
+    "tables/model_candidate_results.csv",
+    "tables/model_file_sizes.csv",
+    "tables/model_training_runtime.csv",
+    "tables/selected_hyperparameters.csv",
+    "tables/temporal_split_summary.csv",
+    "tables/validation_metrics.csv"
+  ],
+  "config_frozen": true,
+  "config_sha256": "02609b5b0dbfea73548bc74e8228104c2256abad2685663eff438655d9bad057",
+  "official_test_loaded": false,
+  "official_test_evaluated": false,
+  "blockers": [],
+  "ready_for_nb04": true,
+  "manifest_hash_policy": "Manifest excludes itself; optional ZIP is external and excludes itself."
+}

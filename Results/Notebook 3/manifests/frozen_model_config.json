@@ -1,0 +1,397 @@
+{
+  "run_id": "2026-10-12T05:33:57.028565+00:00",
+  "mode": "FULL",
+  "dataset": {
+    "id": "phreshphish/phreshphish",
+    "version": "1.0.1",
+    "revision": "eabec4b7a66324b79cc8a0ad856d1731dc26fe1a"
+  },
+  "input_provenance": {
+    "manifest_nb02.json": {
+      "path": "/kaggle/input/datasets/abarman79/notebook-2-files/manifest_nb02.json",
+      "bytes": 10739,
+      "sha256": "0ba0c9bc8ab4b00a7952f39603ad83c075e5e61ea6291dd4617c347b8daa9daa"
+    },
+    "hybrid_features_train.parquet": {
+      "path": "/kaggle/input/datasets/abarman79/notebook-2-files/hybrid_features_train.parquet",
+      "bytes": 54534585,
+      "sha256": "e0a5768e7b60916db32f57f0c078978017d88731f2baf3121ebfe77fbdd3030f"
+    },
+    "final_feature_set.json": {
+      "path": "/kaggle/input/datasets/abarman79/notebook-2-files/final_feature_set.json",
+      "bytes": 3877,
+      "sha256": "3bb24f1e9c1ffc6a02d0a7307e60fa78c68fc0f1dedb3309d0ab025cd97d729a"
+    },
+    "html_feature_dictionary.csv": {
+      "path": "/kaggle/input/datasets/abarman79/notebook-2-files/html_feature_dictionary.csv",
+      "bytes": 1577,
+      "sha256": "76b40cc8c1b939353b69b4859a2617f76bea21e79af17ec157135c5a1c464a6d"
+    }
+  },
+  "temporal_split": {
+    "cutoff_inclusive": "2025-07-09",
+    "rule": "whole day <= cutoff: internal_train; later: internal_validation",
+    "original_rule": "whole-day cumulative count nearest 80%; earlier tie wins; frozen by NB1",
+    "development_partition_agreement": true,
+    "sha_disjoint": true,
+    "chronological": true,
+    "official_training_rows": 498255,
+    "partitions": [
+      {
+        "partition": "internal_train",
+        "rows": 397480,
+        "benign": 204388,
+        "phishing": 193092,
+        "start": "2024-07-02",
+        "end": "2025-07-09",
+        "prevalence": 0.48579048002415215
+      },
+      {
+        "partition": "internal_validation",
+        "rows": 100775,
+        "benign": 72341,
+        "phishing": 28434,
+        "start": "2025-07-10",
+        "end": "2025-09-08",
+        "prevalence": 0.282153311833292
+      }
+    ],
+    "execution_rows": {
+      "internal_train": 397480,
+      "internal_validation": 100775,
+      "refit": 498255
+    },
+    "mode": "FULL",
+    "global_strict_temporal_boundary": false,
+    "official_boundary_caveat": "Official benign train/test share 2025-09-08 (handoff provenance only; test not read)."
+  },
+  "candidate_grids": {
+    "M1": [
+      {
+        "C": 0.1
+      },
+      {
+        "C": 1.0
+      },
+      {
+        "C": 10.0
+      }
+    ],
+    "M2": [
+      {
+        "C": 0.1
+      },
+      {
+        "C": 1.0
+      },
+      {
+        "C": 10.0
+      }
+    ],
+    "M3": [
+      {
+        "max_depth": null
+      },
+      {
+        "max_depth": 20
+      }
+    ],
+    "M4": [
+      {
+        "max_depth": null
+      },
+      {
+        "max_depth": 20
+      }
+    ]
+  },
+  "chosen_parameters": {
+    "M0": {},
+    "M1": {
+      "C": 10.0
+    },
+    "M2": {
+      "C": 10.0
+    },
+    "M3": {
+      "max_depth": 20
+    },
+    "M4": {
+      "max_depth": 20
+    }
+  },
+  "selection_metric": "internal_validation average_precision_score",
+  "tie_policy": "Maximum internal-validation average_precision_score; exact ties retain first candidate in declared order",
+  "positive_label": 1,
+  "threshold": 0.5,
+  "prediction_rule": "estimator.predict; tie -> class 0",
+  "seed": 42,
+  "packages": {
+    "numpy": "2.1.3",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.6.1",
+    "scipy": "1.16.3",
+    "joblib": "1.6.0",
+    "pyarrow": "23.0.1",
+    "matplotlib": "3.10.0",
+    "openpyxl": "3.1.5",
+    "psutil": "5.9.5",
+    "python": "3.13.15"
+  },
+  "official_test_loaded": false,
+  "official_test_evaluated": false,
+  "scope_changes": [],
+  "config_frozen": true,
+  "refit_scope": "all official train",
+  "refit_rows": 498255,
+  "models": {
+    "M0": {
+      "role": "Majority reference",
+      "features": [
+        "dummy_constant"
+      ],
+      "estimator_class": "DummyClassifier",
+      "estimator_parameters": {
+        "constant": null,
+        "random_state": 42,
+        "strategy": "most_frequent"
+      },
+      "preprocessing": {},
+      "artifact": "models/M0_dummy_majority.joblib"
+    },
+    "M1": {
+      "role": "LR URL",
+      "features": [
+        "url_length",
+        "hostname_length",
+        "path_length",
+        "query_length",
+        "num_dots",
+        "num_hyphens",
+        "num_digits",
+        "digit_ratio",
+        "num_subdomains",
+        "path_depth",
+        "num_query_params",
+        "has_ip_host",
+        "has_punycode",
+        "has_at_symbol",
+        "url_entropy"
+      ],
+      "estimator_class": "LogisticRegression",
+      "estimator_parameters": {
+        "C": 10.0,
+        "class_weight": null,
+        "dual": false,
+        "fit_intercept": true,
+        "intercept_scaling": 1,
+        "l1_ratio": null,
+        "max_iter": 5000,
+        "multi_class": "deprecated",
+        "n_jobs": null,
+        "penalty": "l2",
+        "random_state": 42,
+        "solver": "lbfgs",
+        "tol": 0.0001,
+        "verbose": 0,
+        "warm_start": false
+      },
+      "preprocessing": {
+        "imputer": {
+          "add_indicator": false,
+          "copy": true,
+          "fill_value": null,
+          "keep_empty_features": false,
+          "missing_values": "nan",
+          "strategy": "median"
+        },
+        "scaler": {
+          "copy": true,
+          "with_mean": true,
+          "with_std": true
+        }
+      },
+      "artifact": "models/M1_lr_url.joblib"
+    },
+    "M2": {
+      "role": "LR URL+HTML",
+      "features": [
+        "url_length",
+        "hostname_length",
+        "path_length",
+        "query_length",
+        "num_dots",
+        "num_hyphens",
+        "num_digits",
+        "digit_ratio",
+        "num_subdomains",
+        "path_depth",
+        "num_query_params",
+        "has_ip_host",
+        "has_punycode",
+        "has_at_symbol",
+        "url_entropy",
+        "anchor_external_ratio",
+        "form_external_ratio",
+        "form_invalid_action_ratio",
+        "script_external_ratio",
+        "image_external_ratio",
+        "iframe_external_ratio",
+        "link_resource_external_ratio",
+        "overall_external_resource_ratio",
+        "unique_external_registered_domains",
+        "dominant_resource_domain_mismatch"
+      ],
+      "estimator_class": "LogisticRegression",
+      "estimator_parameters": {
+        "C": 10.0,
+        "class_weight": null,
+        "dual": false,
+        "fit_intercept": true,
+        "intercept_scaling": 1,
+        "l1_ratio": null,
+        "max_iter": 5000,
+        "multi_class": "deprecated",
+        "n_jobs": null,
+        "penalty": "l2",
+        "random_state": 42,
+        "solver": "lbfgs",
+        "tol": 0.0001,
+        "verbose": 0,
+        "warm_start": false
+      },
+      "preprocessing": {
+        "imputer": {
+          "add_indicator": false,
+          "copy": true,
+          "fill_value": null,
+          "keep_empty_features": false,
+          "missing_values": "nan",
+          "strategy": "median"
+        },
+        "scaler": {
+          "copy": true,
+          "with_mean": true,
+          "with_std": true
+        }
+      },
+      "artifact": "models/M2_lr_hybrid.joblib"
+    },
+    "M3": {
+      "role": "RF URL",
+      "features": [
+        "url_length",
+        "hostname_length",
+        "path_length",
+        "query_length",
+        "num_dots",
+        "num_hyphens",
+        "num_digits",
+        "digit_ratio",
+        "num_subdomains",
+        "path_depth",
+        "num_query_params",
+        "has_ip_host",
+        "has_punycode",
+        "has_at_symbol",
+        "url_entropy"
+      ],
+      "estimator_class": "RandomForestClassifier",
+      "estimator_parameters": {
+        "bootstrap": true,
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "gini",
+        "max_depth": 20,
+        "max_features": "sqrt",
+        "max_leaf_nodes": null,
+        "max_samples": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "n_estimators": 300,
+        "n_jobs": -1,
+        "oob_score": false,
+        "random_state": 42,
+        "verbose": 0,
+        "warm_start": false
+      },
+      "preprocessing": {
+        "imputer": {
+          "add_indicator": false,
+          "copy": true,
+          "fill_value": null,
+          "keep_empty_features": false,
+          "missing_values": "nan",
+          "strategy": "median"
+        }
+      },
+      "artifact": "models/M3_rf_url.joblib"
+    },
+    "M4": {
+      "role": "RF URL+HTML",
+      "features": [
+        "url_length",
+        "hostname_length",
+        "path_length",
+        "query_length",
+        "num_dots",
+        "num_hyphens",
+        "num_digits",
+        "digit_ratio",
+        "num_subdomains",
+        "path_depth",
+        "num_query_params",
+        "has_ip_host",
+        "has_punycode",
+        "has_at_symbol",
+        "url_entropy",
+        "anchor_external_ratio",
+        "form_external_ratio",
+        "form_invalid_action_ratio",
+        "script_external_ratio",
+        "image_external_ratio",
+        "iframe_external_ratio",
+        "link_resource_external_ratio",
+        "overall_external_resource_ratio",
+        "unique_external_registered_domains",
+        "dominant_resource_domain_mismatch"
+      ],
+      "estimator_class": "RandomForestClassifier",
+      "estimator_parameters": {
+        "bootstrap": true,
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "gini",
+        "max_depth": 20,
+        "max_features": "sqrt",
+        "max_leaf_nodes": null,
+        "max_samples": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "n_estimators": 300,
+        "n_jobs": -1,
+        "oob_score": false,
+        "random_state": 42,
+        "verbose": 0,
+        "warm_start": false
+      },
+      "preprocessing": {
+        "imputer": {
+          "add_indicator": false,
+          "copy": true,
+          "fill_value": null,
+          "keep_empty_features": false,
+          "missing_values": "nan",
+          "strategy": "median"
+        }
+      },
+      "artifact": "models/M4_rf_hybrid.joblib"
+    }
+  }
+}

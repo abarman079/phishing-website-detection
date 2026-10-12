@@ -1,0 +1,37 @@
+{
+  "cutoff_inclusive": "2025-07-09",
+  "rule": "whole day <= cutoff: internal_train; later: internal_validation",
+  "original_rule": "whole-day cumulative count nearest 80%; earlier tie wins; frozen by NB1",
+  "development_partition_agreement": true,
+  "sha_disjoint": true,
+  "chronological": true,
+  "official_training_rows": 498255,
+  "partitions": [
+    {
+      "partition": "internal_train",
+      "rows": 397480,
+      "benign": 204388,
+      "phishing": 193092,
+      "start": "2024-07-02",
+      "end": "2025-07-09",
+      "prevalence": 0.48579048002415215
+    },
+    {
+      "partition": "internal_validation",
+      "rows": 100775,
+      "benign": 72341,
+      "phishing": 28434,
+      "start": "2025-07-10",
+      "end": "2025-09-08",
+      "prevalence": 0.282153311833292
+    }
+  ],
+  "execution_rows": {
+    "internal_train": 397480,
+    "internal_validation": 100775,
+    "refit": 498255
+  },
+  "mode": "FULL",
+  "global_strict_temporal_boundary": false,
+  "official_boundary_caveat": "Official benign train/test share 2025-09-08 (handoff provenance only; test not read)."
+}

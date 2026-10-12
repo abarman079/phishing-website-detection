@@ -1,0 +1,6 @@
+model_id,model_name,candidate_id,selected_parameters,validation_AP,criterion,tie_policy
+M0,Majority reference,M0_candidate_1,{},0.282153311833292,average_precision_score,Maximum internal-validation average_precision_score; exact ties retain first candidate in declared order
+M1,LR URL,M1_candidate_3,"{""C"": 10.0}",0.7361940333076202,average_precision_score,Maximum internal-validation average_precision_score; exact ties retain first candidate in declared order
+M2,LR URL+HTML,M2_candidate_3,"{""C"": 10.0}",0.8148332276577142,average_precision_score,Maximum internal-validation average_precision_score; exact ties retain first candidate in declared order
+M3,RF URL,M3_candidate_2,"{""max_depth"": 20}",0.8229978862254623,average_precision_score,Maximum internal-validation average_precision_score; exact ties retain first candidate in declared order
+M4,RF URL+HTML,M4_candidate_2,"{""max_depth"": 20}",0.8948588240019208,average_precision_score,Maximum internal-validation average_precision_score; exact ties retain first candidate in declared order

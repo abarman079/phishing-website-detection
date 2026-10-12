@@ -1,0 +1,6 @@
+model_id,path,bytes,sha256,reload_verified,fit_rows,feature_order_verified
+M0,/kaggle/working/nb03/full/models/M0_dummy_majority.joblib,784,8c5f4a083656544b6cb440e4bcbc71e763907cae7c0dd766bbe39b8f890b0b33,True,498255,True
+M1,/kaggle/working/nb03/full/models/M1_lr_url.joblib,1914,63f3a7f06cce2006b774b0cc06a4bc7065558490a7853630a50162150ac8547e,True,498255,True
+M2,/kaggle/working/nb03/full/models/M2_lr_hybrid.joblib,2423,5108d94590a10c53ca9bd1eb5d6f0ecc0b4ba7f913d0b670acc6befca2298885,True,498255,True
+M3,/kaggle/working/nb03/full/models/M3_rf_url.joblib,135549608,fcf0bbce6135be255434d39901c763165e3d45c185a3a6798f8ddce5b8bb685c,True,498255,True
+M4,/kaggle/working/nb03/full/models/M4_rf_hybrid.joblib,114006730,7721e9a9be88c757b8ac99de29bf4fb0a882f6865b5c85f1bb5d5ff072f9620c,True,498255,True
