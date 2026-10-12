@@ -1,0 +1,13 @@
+figure,file,caption,scope,run_utc
+F19,figures/F19_final_AP_F1_MCC_comparison.png,"Official test; n=168,060; fixed NB3 models. AP uses average_precision_score; prevalence=0.457.",Official test,2026-10-12T10:52:31.025976+00:00
+F20,figures/F20_final_PR_curves.png,"Official test; n=168,060; fixed NB3 models. AP uses average_precision_score; prevalence=0.457.",Official test,2026-10-12T10:52:31.025976+00:00
+F21,figures/F21_final_ROC_curves.png,"Official test; n=168,060; fixed NB3 models. AP uses average_precision_score; prevalence=0.457.",Official test,2026-10-12T10:52:31.025976+00:00
+F22,figures/F22_final_confusion_matrices.png,Official test; raw counts with row percentages; color range fixed 0–1 across models.,Official test,2026-10-12T10:52:31.025976+00:00
+F23,figures/F23_hybrid_minus_url_metric_delta.png,Official test; descriptive paired differences; AP/F1 on 0–1 scale; MCC on −1–1 scale; CIs in F25.,Official test,2026-10-12T10:52:31.025976+00:00
+F24,figures/F24_mcnemar_discordant_predictions.png,"Official test; same-row frozen predictions; exact test when discordance <25, otherwise corrected asymptotic.",Official test,2026-10-12T10:52:31.025976+00:00
+F25,figures/F25_bootstrap_difference_CI_forest.png,"Official test; B=500, seed=42; identical resampled rows for all models; point = observed difference.",Official test,2026-10-12T10:52:31.025976+00:00
+F26,figures/F26_lr_standardized_coefficients.png,"Frozen training-fitted imputation/scaling; coefficients reflect conditional association, not causation. Correlation affects magnitude/sign.",Official test,2026-10-12T10:52:31.025976+00:00
+F27,figures/F27_rf_permutation_importance.png,"Official test; n=10,000; seed=42; 5 repeats; prevalence=0.462. Correlated features can share importance; SD is not a CI.",Official test,2026-10-12T10:52:31.025976+00:00
+F28,figures/F28_inference_runtime_comparison.png,"Official test; n=168,060; one timed call/API after 128-row warmup; 4 logical CPUs. Machine-specific, not a repeated benchmark.",Official test,2026-10-12T10:52:31.025976+00:00
+F29,figures/F29_model_file_size_comparison.png,Official test; actual verified file bytes. Compressed artifact size is not inference RAM or peak memory.,Official test,2026-10-12T10:52:31.025976+00:00
+F30,figures/F30_phreshphish_test_AP_context.png,No external benchmark bars: published values/protocol comparability have not been verified. No 5% base-rate experiment.,Official test,2026-10-12T10:52:31.025976+00:00

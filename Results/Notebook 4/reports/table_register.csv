@@ -1,0 +1,13 @@
+file,rows,columns,scope
+metrics/final_test_metrics.csv,5,17,Official test
+metrics/final_confusion_counts.csv,5,6,Official test
+metrics/precision_at_recall_090.csv,5,7,Official test
+metrics/hybrid_minus_url_differences.csv,16,6,Official test
+metrics/mcnemar_tests.csv,2,14,Official test
+metrics/bootstrap_confidence_intervals.csv,21,9,Official test
+tables/lr_standardized_coefficients.csv,25,7,Official test
+tables/rf_permutation_importance.csv,25,10,Official test
+tables/efficiency_summary.csv,5,16,Official test
+tables/phreshphish_context_comparison.csv,5,10,Official test
+tables/final_model_summary.csv,5,34,Official test
+tables/frozen_predictors.csv,25,3,Official test

@@ -1,0 +1,6 @@
+model_id,target_recall,precision_at_recall,achieved_recall,descriptive_threshold,selected_rows,rule
+M0,0.9,0.4569796501249554,1.0,0.0,168060,highest threshold reaching recall >= .90; include entire tied score group; does NOT alter predict()
+M1,0.9,0.68047570292195,0.9,0.2850291186414745,101576,highest threshold reaching recall >= .90; include entire tied score group; does NOT alter predict()
+M2,0.9,0.7982538197692548,0.9,0.31351992212979884,86589,highest threshold reaching recall >= .90; include entire tied score group; does NOT alter predict()
+M3,0.9,0.8363238194335216,0.9000390625,0.2573222814071623,82651,highest threshold reaching recall >= .90; include entire tied score group; does NOT alter predict()
+M4,0.9,0.9461105711978318,0.9,0.3625594854257923,73057,highest threshold reaching recall >= .90; include entire tied score group; does NOT alter predict()

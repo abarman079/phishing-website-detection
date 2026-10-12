@@ -1,0 +1,17 @@
+comparison,metric,hybrid_minus_url,raw_unit,percentage_point_difference,desirable_direction
+M2-M1,accuracy,0.04626918957515169,accuracy points (0–1 scale),4.626918957515169,positive
+M2-M1,precision,0.05074251263478258,precision points (0–1 scale),5.074251263478258,positive
+M2-M1,recall,0.05276041666666664,recall points (0–1 scale),5.276041666666664,positive
+M2-M1,F1,0.051794717416905,F1 points (0–1 scale),5.1794717416905005,positive
+M2-M1,MCC,0.09352643294799423,MCC units,,positive
+M2-M1,ROC_AUC,0.05647122133305027,ROC_AUC points (0–1 scale),5.647122133305027,positive
+M2-M1,AP,0.04941650829184929,AP points (0–1 scale),4.94165082918493,positive
+M2-M1,FPR,-0.04080648696033312,FPR points (0–1 scale),-4.080648696033312,negative
+M4-M3,accuracy,0.04800071403070327,accuracy points (0–1 scale),4.800071403070327,positive
+M4-M3,precision,0.07291945078813689,precision points (0–1 scale),7.291945078813688,positive
+M4-M3,recall,0.03623697916666668,recall points (0–1 scale),3.6236979166666683,positive
+M4-M3,F1,0.05300124051969135,F1 points (0–1 scale),5.300124051969135,positive
+M4-M3,MCC,0.09920606593802028,MCC units,,positive
+M4-M3,ROC_AUC,0.02386966646634603,ROC_AUC points (0–1 scale),2.386966646634603,positive
+M4-M3,AP,0.023105358416919186,AP points (0–1 scale),2.3105358416919186,positive
+M4-M3,FPR,-0.05790050405435021,FPR points (0–1 scale),-5.7900504054350215,negative

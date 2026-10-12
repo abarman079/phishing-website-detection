@@ -1,0 +1,6 @@
+model_id,model,AP,prevalence,n,precision_at_recall,achieved_recall,published_reference,comparability,data_version
+M0,Majority,0.4569796501249554,0.4569796501249554,168060,0.4569796501249554,1.0,not supplied / not verified,same-test published AP and P@R=.90 comparator unavailable,phreshphish 1.0.1
+M1,LR URL,0.8829377823293671,0.4569796501249554,168060,0.68047570292195,0.9,not supplied / not verified,same-test published AP and P@R=.90 comparator unavailable,phreshphish 1.0.1
+M2,LR URL+HTML,0.9323542906212164,0.4569796501249554,168060,0.7982538197692548,0.9,not supplied / not verified,same-test published AP and P@R=.90 comparator unavailable,phreshphish 1.0.1
+M3,RF URL,0.9549107958225402,0.4569796501249554,168060,0.8363238194335216,0.9000390625,not supplied / not verified,same-test published AP and P@R=.90 comparator unavailable,phreshphish 1.0.1
+M4,RF URL+HTML,0.9780161542394594,0.4569796501249554,168060,0.9461105711978318,0.9,not supplied / not verified,same-test published AP and P@R=.90 comparator unavailable,phreshphish 1.0.1

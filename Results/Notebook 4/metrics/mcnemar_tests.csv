@@ -1,0 +1,3 @@
+comparison,both_correct,url_correct_hybrid_wrong,url_wrong_hybrid_correct,both_wrong,discordant,n,statistic,p_value,alpha,method,significant_unadjusted,direction,interpretation
+M2-M1,128173,8751,16527,14609,25278,168060,2391.4322731228735,0.0,0.05,asymptotic continuity-corrected,True,hybrid fewer errors,hybrid fewer errors; significant at unadjusted alpha=.05; two predeclared comparisons
+M4-M3,143696,3643,11710,9011,15353,168060,4237.63147267635,0.0,0.05,asymptotic continuity-corrected,True,hybrid fewer errors,hybrid fewer errors; significant at unadjusted alpha=.05; two predeclared comparisons
