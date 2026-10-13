@@ -59,9 +59,9 @@ Hyperparameters were selected by **Average Precision (AP)** on the later interna
 | Notebook | Source | Status |
 |---|---|---|
 | 1. Data audit and URL features | [`notebooks/01_data_audit_and_url_features.ipynb`](notebooks/01_data_audit_and_url_features.ipynb) | FULL complete |
-| 2. HTML consistency features | [`notebooks/02_html_domain_consistency_features.ipynb`](notebooks/02_html_domain_consistency_features.ipynb) | FULL complete; `ready_for_nb03=true` |
+| 2. HTML consistency features | [`notebooks/02_html_domain_consistency_features.ipynb`](notebooks/02-html-domain-consistency-features.ipynb) | FULL complete; `ready_for_nb03=true` |
 | 3. Temporal validation and model selection | [`notebooks/03_temporal_validation_and_model_selection.ipynb`](notebooks/03_temporal_validation_and_model_selection.ipynb) | FULL complete; `ready_for_nb04=true` |
-| 4. Official-test evaluation and interpretation | `04_final_temporal_evaluation_and_interpretation.ipynb` | Planned; official test remains untouched |
+| 4. Official-test evaluation and interpretation | [`notebooks/04_final_temporal_evaluation_and_interpretation.ipynb`](notebooks/04_final_temporal_evaluation_and_interpretation.ipynb) | FULL complete; `full_complete=true` |
 
 ## Results directories
 
@@ -69,6 +69,7 @@ Hyperparameters were selected by **Average Precision (AP)** on the later interna
 - [`Results/Notebook 2/`](Results/Notebook%202/) — static-HTML diagnostics, H08 decision, feature manifest, figures and provenance.
 - [`Results/Notebook 3/`](Results/Notebook%203/) — internal temporal validation metrics, candidate/selection results, six figures (F13–F18), model-configuration freeze, checksums, and FULL-run manifest.
 - [`environment/`](environment/) — package versions used by each notebook.
+- [`Results/Notebook 4/`](Results/Notebook%204/) — final official-test metrics, paired McNemar tests, bootstrap confidence intervals, feature interpretation, efficiency analysis, F19–F30 figures, and the FULL-run manifest.
 
 ## Important: large artifacts are stored outside Git
 
@@ -98,4 +99,20 @@ The committed notebook source is designed to start in `RUN_MODE="SMOKE"` for saf
 
 ## Evaluation boundary and academic use
 
-Notebook 4 will perform final official-test metrics and paired statistical tests (McNemar and paired bootstrap), interpretation, and efficiency reporting **using frozen Notebook 3 models**. Do not tune model settings after observing official-test results. All research materials are intended for static, offline academic analysis.
+## Final official-test results — Notebook 4
+
+Notebook 4 completed the one-time evaluation of all five frozen models on 168,060 official-test observations.
+
+| Model | AP | F1 | MCC |
+|---|---:|---:|---:|
+| M0 Dummy | 0.4570 | 0.0000 | 0.0000 |
+| M1 LR URL | 0.8829 | 0.7939 | 0.6260 |
+| M2 LR URL+HTML | 0.9324 | 0.8457 | 0.7195 |
+| M3 RF URL | 0.9549 | 0.8601 | 0.7518 |
+| M4 RF URL+HTML | 0.9780 | 0.9131 | 0.8510 |
+
+Both hybrid models improved over their corresponding URL-only models. Two predeclared McNemar comparisons supported differences in classification correctness (p < 0.001). Paired bootstrap 95% confidence intervals for AP, F1 and MCC improvements excluded zero.
+
+The official test has a documented same-calendar-day boundary limitation. No model refitting or hyperparameter tuning was performed after test exposure.
+
+See `Results/Notebook 4/reports/final_result_values_for_thesis.md` for detailed results and limitations.
